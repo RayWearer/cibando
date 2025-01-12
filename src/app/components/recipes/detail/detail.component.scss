@@ -1,0 +1,47 @@
+@import "../../../styles/colori.scss";
+
+.recipe-image {
+  width: 100%;
+  height: 360px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  border-top: 1px solid #e0e0e0;
+}
+
+.recipe-body {
+  padding: 24px;
+}
+
+.recipe-title {
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 24px;
+  color: $primary-color-1;
+}
+
+.recipe-text {
+  color: $secondary-dark-color-2;
+}
+
+.recipe-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-top: 1px solid $secondary-light-color-1;
+
+  .recipe-difficulty {
+    flex: 1;
+    text-align: left;
+  }
+
+  .recipe-publication {
+    flex: 1;
+    text-align: right;
+
+    h6{
+      color: #999999
+    }
+  }
+}
