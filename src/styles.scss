@@ -16,6 +16,22 @@ body {
   background-color: $primary-color-2;
 }
 
+.btn-primary:disabled{
+  border: 0;
+  background-color: $secondary-light-color-1;
+}
+
 .btn-primary:hover{
   background-color: $secondary-light-color-2;
+}
+
+.is-danger{
+  color: rgb(140, 0, 0);
+  font-size: small;
+  position: relative;
+  top: -8px;
+}
+
+input.ng-valid{
+  border: 2px solid green!important;
 }

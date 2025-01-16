@@ -6,6 +6,9 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 
 // Routes
 import { HomeComponent } from './components/home/home.component';
@@ -15,6 +18,7 @@ import { RecipeCardComponent } from './components/shared/recipe-card/recipe-card
 import { DetailComponent } from './components/recipes/detail/detail.component';
 import { CarouselComponent } from './components/shared/carousel/carousel.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { RecipesListComponent } from './components/recipes/recipes-list/recipes-
     HeaderComponent,
     RecipeCardComponent,
     DetailComponent,
-    RecipesListComponent
+    RecipesListComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,11 @@ import { RecipesListComponent } from './components/recipes/recipes-list/recipes-
     NgbCarouselModule,
     AppRoutingModule,
     NgbModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PasswordModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

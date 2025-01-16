@@ -1,0 +1,24 @@
+@import "../../../styles/colori.scss";
+
+.col-lg-12{
+  margin-top: 16px;
+}
+
+.card{
+  border: 2px $primary-color-1 solid;
+}
+
+.p-md-5{
+  padding: 0!important;
+}
+
+.p-inputwrapper{
+  padding: 0!important;
+}
+
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 22px 22px 0;
+}
