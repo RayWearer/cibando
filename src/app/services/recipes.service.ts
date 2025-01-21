@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RECIPES } from '../mocks/recipes.mock';
 import { Observable, of } from 'rxjs'; //of viene utilizzato con i dati mockati per simularli come reali
 import { Recipe } from '../models/recipes.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,23 @@ import { Recipe } from '../models/recipes.model';
 
 export class RecipesService {
 
-  constructor() { }
+  apiBaseUrl = 'api/recipes';
 
-  getRecipes(): Observable<Recipe[]>{
-    return of (RECIPES);
+  constructor(private http: HttpClient) { }
+
+  getRecipes() { //: Observable<Recipe[]>
+    //  return of (RECIPES); Parte Mockata
+    return this.http.get<Recipe[]>(`${this.apiBaseUrl}/`);
   }
 
-  getDetail(id: number): Observable<Recipe | undefined>{
-    const RECIPE = RECIPES.find(ricetta => ricetta._id === id);
-    return of (RECIPE);
+  getDetail(id: string): Observable<Recipe | undefined>{
+    //  const RECIPE = RECIPES.find(ricetta => ricetta._id === id); Parte Mockata
+    //  return of (RECIPE);
+    return this.http.get<Recipe>(`${this.apiBaseUrl}/${id}`);
+  }
+
+  createRecipe(recipe: Recipe): Observable<Recipe>{
+   return this.http.post<Recipe>(`${this.apiBaseUrl}/`, recipe);
   }
 
 }

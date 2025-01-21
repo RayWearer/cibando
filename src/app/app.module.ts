@@ -9,6 +9,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
+import { PaginatorModule } from 'primeng/paginator';
+import { HttpClientModule } from '@angular/common/http';
+import { FloatLabelModule } from "primeng/floatlabel";
+import { ButtonModule } from 'primeng/button';
 
 // Routes
 import { HomeComponent } from './components/home/home.component';
@@ -19,6 +23,9 @@ import { DetailComponent } from './components/recipes/detail/detail.component';
 import { CarouselComponent } from './components/shared/carousel/carousel.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
+import { LoginComponent } from './components/user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +37,10 @@ import { RegistrationComponent } from './components/user/registration/registrati
     RecipeCardComponent,
     DetailComponent,
     RecipesListComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ContactsComponent,
+    CreateRecipeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +53,11 @@ import { RegistrationComponent } from './components/user/registration/registrati
     ReactiveFormsModule,
     PasswordModule,
     DividerModule,
+    PaginatorModule,
+    HttpClientModule,
+    FloatLabelModule,
+    ButtonModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

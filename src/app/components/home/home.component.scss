@@ -1,3 +1,5 @@
+@import "../../styles/colori.scss";
+
 .container-title{
   width: 480px;
 
@@ -16,4 +18,12 @@
 
 .testo-evidenziato{
   background-color: yellow;
+}
+
+#container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 16px;
 }

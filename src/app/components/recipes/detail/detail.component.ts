@@ -26,7 +26,7 @@ export class DetailComponent implements OnInit {
   }
 
   onGetDetail() {
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('_id'));
+    const id = this.activatedRoute.snapshot.paramMap.get('_id');
 
     if(id) {
       this.recipesService.getDetail(id).subscribe({

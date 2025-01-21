@@ -9,7 +9,8 @@ import { Recipe } from '../../../models/recipes.model';
   styleUrl: './recipe-card.component.scss'
 })
 export class RecipeCardComponent {
-  @Input() recipes: Recipe[] | undefined;
+  @Input() recipe: Recipe | undefined;
+  @Input() page: string = '';
   @Output() messaggio = new EventEmitter();
 
   inviaTitolo(titolo: string) {

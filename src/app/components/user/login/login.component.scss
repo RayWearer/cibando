@@ -1,0 +1,31 @@
+@import "../../../styles/colori.scss";
+
+#login-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+  height: 50vh;
+  margin: auto;
+}
+
+.form-group{
+  margin-bottom: 16px;
+  height: 40px;
+}
+
+:host ::ng-deep .p-inputtext{
+  border: 1px solid #dfdfdf!important;
+  width: 100%!important;
+}
+
+#error-message{
+  font-size: 12px;
+  color: $secondary-dark-color-1;
+  text-align: center;
+}
+
+#signup-link{
+  margin-top: 16px;
+}

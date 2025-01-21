@@ -19,7 +19,7 @@ export class RegistrationComponent {
 
   // Reactive Form:
   form = new FormGroup({
-    nome: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,16}$/)]),
     ripetiPassword: new FormControl('', [Validators.required]),
@@ -28,11 +28,17 @@ export class RegistrationComponent {
 
   onSubmit() {
     console.log(this.form.value);
-    const dati = {nome: this.form.controls.nome.value, email: this.form.controls.email.value};
+    const dati = {name: this.form.controls.name.value, email: this.form.controls.email.value};
     this.userService.datiUtente.next(dati);
+    this.userService.saveUser(this.form.value).subscribe({
+      next: (response) => {
+        console.log("utente aggiunto", response),
+        this.router.navigateByUrl('home');
+      },
+      error: (e) => console.log(e)
+    });
     // Rimandiamo l'utente alla pagina principale
     // this.router.navigate(['home]);
-    this.router.navigateByUrl('home');
   }
 
   comparaPassword(e) {

@@ -27,7 +27,7 @@ export class HomeComponent {
     ) {
     this.recipeService.getRecipes().subscribe({
       next: (response) => {
-        this.ricette = response.sort((a, b) => b._id - a._id).slice(0, 4);
+        this.ricette = response.sort((a, b) => Number(b._id) - Number(a._id)).slice(0, 4);
       },
       error: (e) => console.error(e)
     });

@@ -12,3 +12,14 @@ header {
   background-color: #8e210b;
   padding-left: 16px
 }
+
+.autenticato{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff85;
+  width: 240px;
+  margin-left: 32px;
+}

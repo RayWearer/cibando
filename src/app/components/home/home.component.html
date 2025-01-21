@@ -6,7 +6,11 @@
 </div>
 
 <h2>Ultime ricette</h2>
-<app-recipe-card [recipes]="ricette"></app-recipe-card>
+<div id="container-cards">
+  <div class="container-card" *ngFor="let ricetta of ricette">
+    <app-recipe-card [recipe]="ricetta" [page]="'home'"></app-recipe-card>
+  </div>
+</div>
 <!--
 <button (click)="openModal(modaleUno, 453, 'Spaghetti')">Elimina Prodotto</button>
 <button (click)="openModal(modaleRegistrazione)">Registrazione</button>

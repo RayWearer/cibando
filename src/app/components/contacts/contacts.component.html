@@ -1,0 +1,47 @@
+<div class="flex-container">
+  <div id="contacts-container">
+    <h4>Richiedi informazioni</h4>
+    <div id="form-wrapper">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-field-container">
+          <label for="nome">Nome: </label>
+          <input type="text" id="name" formControlName="nome" />
+        </div>
+        <div class="form-field-container">
+          <label for="email">Email: </label>
+          <input type="email" id="email" formControlName="email" />
+        </div>
+        <div class="form-field-container">
+          <label for="oggetto">Oggetto: </label>
+          <input type="text" id="oggetto" formControlName="oggetto" />
+        </div>
+        <div class="message-field-container">
+          <label for="messaggio">Testo del messaggio: </label>
+          <textarea id="messaggio" formControlName="messaggio"></textarea>
+        </div>
+
+        <div id="error-container">
+          <p class="is-danger" *ngIf="!form.get('nome')?.valid && form.get('nome')?.touched">
+            Il campo nome è obbligatorio.
+          </p>
+          <p class="is-danger" *ngIf="form.controls.email.hasError('required') && form.get('email')?.touched">
+            Il campo email è obbligatorio.
+          </p>
+          <p class="is-danger" *ngIf="form.controls.email.hasError('email') && form.get('email')?.touched">
+            Il campo deve contenere un indirizzo email valido.
+          </p>
+          <p class="is-danger" *ngIf="form.controls.oggetto.hasError('required') && form.get('oggetto')?.touched">
+            Il campo oggetto è obbligatorio.
+          </p>
+          <p class="is-danger" *ngIf="form.controls.messaggio.hasError('required') && form.get('messaggio')?.touched">
+            Il campo messaggio è obbligatorio.
+          </p>
+        </div>
+
+        <div class="button-container">
+          <button [disabled]="!form.valid" type="submit" class="btn-primary">Invia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

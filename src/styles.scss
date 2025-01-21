@@ -12,17 +12,25 @@ body {
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
-.btn-primary{
-  background-color: $primary-color-2;
+.btn-primary {
+  background-color: $primary-color-1;
+  border-color: $primary-color-1!important;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: $secondary-light-color-1;
+  border-color: $secondary-light-color-1;
+}
+
+.btn-primary:active{
+  background-color: $secondary-dark-color-1!important;
 }
 
 .btn-primary:disabled{
-  border: 0;
-  background-color: $secondary-light-color-1;
-}
-
-.btn-primary:hover{
-  background-color: $secondary-light-color-2;
+  cursor: default;
+  pointer-events: none;
+  background-color: #aaa;
 }
 
 .is-danger{

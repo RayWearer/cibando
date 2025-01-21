@@ -1,3 +1,21 @@
 <h2>Le nostre ricette</h2> {{titoloRicevuto}}
 
-<app-recipe-card [recipes]="ricette" (messaggio)="riceviTitolo($event)"></app-recipe-card>
+<div id="container-cards">
+  <div class="container-card" *ngFor="let ricetta of recipes$ | async | slice: (page*size) - size : page*size">
+    <app-recipe-card [recipe]="ricetta" (messaggio)="riceviTitolo($event)"></app-recipe-card>
+  </div>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [rows]="size"
+      [totalRecords]="totaleRicette.length"
+      [rowsPerPageOptions]="[3, 4, 5]" />
+</div>
+
+<div class="add-button-container">
+  <h4>Vuoi aggiungere una nuova ricetta?</h4>
+  <a class="btn btn-primary" routerLink="crea-ricetta">Clicca qui!</a>
+</div>
