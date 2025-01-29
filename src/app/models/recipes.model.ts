@@ -3,8 +3,9 @@ export interface Recipe {
   title: string;
   description: string;
   image: string;
+  published?: boolean;
   difficulty: number;
-  date: string;
-  published: boolean;
+  createdAt?: string;
+  updatedAt?: string;
   //note? string; Esempio di campo opzionale
 }

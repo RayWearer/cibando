@@ -6,11 +6,17 @@
 </div>
 
 <h2>Ultime ricette</h2>
-<div id="container-cards">
-  <div class="container-card" *ngFor="let ricetta of ricette">
-    <app-recipe-card [recipe]="ricetta" [page]="'home'"></app-recipe-card>
-  </div>
-</div>
+<p-button [label]="isLoaded() ? 'Nascondi ricette' : 'Mostra ricette'" (click)="toggle()"/>
+@defer (when isLoaded()) {
+  @if (isLoaded()){
+    <div id="container-cards">
+      <div class="container-card" *ngFor="let ricetta of ricette">
+        <app-recipe-card [recipe]="ricetta" [page]="'home'"></app-recipe-card>
+      </div>
+    </div>
+  }
+}
+
 <!--
 <button (click)="openModal(modaleUno, 453, 'Spaghetti')">Elimina Prodotto</button>
 <button (click)="openModal(modaleRegistrazione)">Registrazione</button>
@@ -39,7 +45,7 @@
 	<div class="modal-body">
 		<h3>Ecco i tuoi dati:</h3>
     <ul>
-      <li>Nome: {{this.datiRegistrazione['nome']}}</li>
+      <li>Nome: {{this.datiRegistrazione['name']}}</li>
       <li>Email: {{this.datiRegistrazione['email']}}</li>
     </ul>
 	</div>

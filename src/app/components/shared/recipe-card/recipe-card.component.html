@@ -1,9 +1,14 @@
 <div class="card" style="width: 18rem;">
-  <div class="card-image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}" (click)="inviaTitolo(recipe.title)"></div>
+  <div class="card-image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}"></div>
   <div class="card-body">
     <h5 class="card-title">{{recipe.title}}</h5>
-    <p class="card-text">{{recipe.description | slice: 0:250}}...</p>
-    <a *ngIf="page !== 'home'" class="btn btn-primary" routerLink="dettaglio/{{recipe.title}}/{{recipe._id}}">Visualizza</a>
-    <a *ngIf="page === 'home'" class="btn btn-primary" routerLink="/ricette/dettaglio/{{recipe.title}}/{{recipe._id}}">Dettaglio</a>
+    <!-- <p class="card-text">{{recipe.description | slice: 0:250}}...</p> -->
+    <p class="card-text" [innerHTML]="accorciaDescrizione(recipe.description)"></p>
+    <div class="button-container">
+      <a *ngIf="page !== 'home'" class="btn btn-primary" routerLink="dettaglio/{{recipe.title}}/{{recipe._id}}">Visualizza</a>
+      <a *ngIf="page === 'home'" class="btn btn-primary" routerLink="/ricette/dettaglio/{{recipe.title}}/{{recipe._id}}">Dettaglio</a>
+      <a *ngIf="adminView" class="btn btn-primary" (click)="sendUpdate(recipe)"><i class="pi pi-pencil"></i></a>
+      <a *ngIf="adminView" class="btn btn-primary" (click)="sendDelete(recipe)"><i class="pi pi-trash"></i></a>
+    </div>
   </div>
 </div>

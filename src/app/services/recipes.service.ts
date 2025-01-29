@@ -14,9 +14,8 @@ export class RecipesService {
 
   constructor(private http: HttpClient) { }
 
-  getRecipes() { //: Observable<Recipe[]>
-    //  return of (RECIPES); Parte Mockata
-    return this.http.get<Recipe[]>(`${this.apiBaseUrl}/`);
+  createRecipe(recipe: Recipe): Observable<Recipe>{
+    return this.http.post<Recipe>(`${this.apiBaseUrl}/`, recipe);
   }
 
   getDetail(id: string): Observable<Recipe | undefined>{
@@ -25,8 +24,17 @@ export class RecipesService {
     return this.http.get<Recipe>(`${this.apiBaseUrl}/${id}`);
   }
 
-  createRecipe(recipe: Recipe): Observable<Recipe>{
-   return this.http.post<Recipe>(`${this.apiBaseUrl}/`, recipe);
+  getRecipes() { //: Observable<Recipe[]>
+    //  return of (RECIPES); Parte Mockata
+    return this.http.get<Recipe[]>(`${this.apiBaseUrl}/`);
+  }
+
+  updateRecipe(recipe: Recipe): Observable<Recipe>{
+    return this.http.put<Recipe>(`${this.apiBaseUrl}/${recipe._id}`, recipe);
+  }
+
+  deleteRecipe(id: string): Observable<Recipe>{
+    return this.http.delete<Recipe>(`${this.apiBaseUrl}/${id}`);
   }
 
 }

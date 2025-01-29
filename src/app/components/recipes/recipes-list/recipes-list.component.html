@@ -1,8 +1,10 @@
-<h2>Le nostre ricette</h2> {{titoloRicevuto}}
+<h2>Le nostre ricette</h2>
 
 <div id="container-cards">
   <div class="container-card" *ngFor="let ricetta of recipes$ | async | slice: (page*size) - size : page*size">
-    <app-recipe-card [recipe]="ricetta" (messaggio)="riceviTitolo($event)"></app-recipe-card>
+    <app-recipe-card [recipe]="ricetta" [adminView]="authService.isLogged() && role === 'admin'"
+      (deleteRequest)="onDeleteRequest($event)"
+      (updateRequest)="onUpdateRequest($event)"></app-recipe-card>
   </div>
 </div>
 
@@ -15,7 +17,59 @@
       [rowsPerPageOptions]="[3, 4, 5]" />
 </div>
 
-<div class="add-button-container">
+<div class="add-button-container" *ngIf="authService.isLogged() && role === 'admin'">
   <h4>Vuoi aggiungere una nuova ricetta?</h4>
   <a class="btn btn-primary" routerLink="crea-ricetta">Clicca qui!</a>
 </div>
+
+<ng-template #modaleAggiorna let-modal>
+  <div class="modal-header">
+		<h4 class="modal-title">Modifica ricetta</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form class="add-recipe-form" [formGroup]="form" (ngSubmit)="confirmUpdate()">
+        <input type="hidden" class="form-control" id="id" formControlName="id" required>
+      <div class="form-group">
+        <i class="pi pi-paperclip" style="font-size: 1rem"></i><label for="title"> Titolo</label>
+        <input type="text" class="form-control" id="title" formControlName="title"required>
+      </div>
+      <div class="form-group">
+        <i class="pi pi-pen-to-square" style="font-size: 1rem"></i><label for="description"> Descrizione</label>
+        <p-editor formControlName="description" [style]="{ height: '160px' }" />
+      </div>
+      <div class="form-group">
+        <i class="pi pi-image" style="font-size: 1rem"></i><label for="image"> Foto</label>
+        <input type="text" class="form-control" id="image" formControlName="image" name="image" required>
+      </div>
+      <div class="form-group">
+        <i class="pi pi-wrench" style="font-size: 1rem"></i><label for="difficulty">Difficoltà:</label>
+        <select class="form-control" id="difficulty" formControlName="difficulty" required>
+          <option [value]=1>★☆☆☆☆</option>
+          <option [value]=2>★★☆☆☆</option>
+          <option [value]=3>★★★☆☆</option>
+          <option [value]=4>★★★★☆</option>
+          <option [value]=5>★★★★★</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Aggiorna ricetta</button>
+    </form>
+	</div>
+	<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()" ngbAutofocus>ANNULLA</button>
+	</div>
+</ng-template>
+
+<ng-template #modaleElimina let-modal>
+  <div class="modal-header">
+		<h4 class="modal-title">Elimina ricetta</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Sei sicuro di voler eliminare la ricetta ID: {{this.modalId}}, Titolo: <strong>{{this.modalTitle}}</strong>?</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" (click)="confirmDeletion(modalId)" (click)="modal.close('Close click')">CONFERMA</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()" ngbAutofocus>ANNULLA</button>
+	</div>
+</ng-template>

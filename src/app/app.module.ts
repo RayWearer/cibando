@@ -13,6 +13,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { FloatLabelModule } from "primeng/floatlabel";
 import { ButtonModule } from 'primeng/button';
+import { EditorModule } from 'primeng/editor';
+import { ToastModule } from 'primeng/toast';
 
 // Routes
 import { HomeComponent } from './components/home/home.component';
@@ -26,6 +28,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { LoginComponent } from './components/user/login/login.component';
     ContactsComponent,
     CreateRecipeComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,8 @@ import { LoginComponent } from './components/user/login/login.component';
     HttpClientModule,
     FloatLabelModule,
     ButtonModule,
+    EditorModule,
+    ToastModule,
 
   ],
   providers: [],

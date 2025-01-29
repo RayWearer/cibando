@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, signal } from '@angular/core';
 import { Recipe } from '../../models/recipes.model';
 import { RecipesService } from '../../services/recipes.service';
 import { UserService } from './../../services/user.service';
@@ -12,7 +12,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-@ViewChild('modaleRegistrazione', {static: false}) modaleRegistrazione: ElementRef;
+  @ViewChild('modaleRegistrazione', {static: false}) modaleRegistrazione: ElementRef;
+
+  isLoaded = signal(false);
 
   evidenziato = false;
   ricette: Recipe[] = [];
@@ -73,6 +75,11 @@ export class HomeComponent {
           console.log('nessuna azione da eseguire');
           this.userService.datiUtente.next(null);
         })
+  }
+
+  toggle() {
+    this.isLoaded.update((val) => !val);
+    //  this.isLoaded.set(!this.isLoaded());
   }
 
 }

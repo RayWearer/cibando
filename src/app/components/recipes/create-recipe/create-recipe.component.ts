@@ -36,7 +36,7 @@ export class CreateRecipeComponent {
       image: this.form.controls.image.value,
       difficulty: Number(this.form.controls.difficulty.value),
       published: true,
-      date: new Date().toISOString()
+      updatedAt: new Date().toISOString()
     }
 
     this.recipesService.createRecipe(ricetta).subscribe({

@@ -7,7 +7,8 @@ interface User{
   _id: string,
   name: string,
   email: string,
-  password: string
+  password: string,
+  role: string
 }
 
 @Injectable({
@@ -31,7 +32,8 @@ export class AuthService {
       _id: res._id,
       name: res.name,
       email: res.email,
-      password: res.password
+      password: res.password,
+      role: res.role,
     }
 
     localStorage.setItem('user', JSON.stringify(USER));
