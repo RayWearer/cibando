@@ -1,27 +1,31 @@
 <app-carousel></app-carousel>
 
 <div class="container-title">
-  <h1 [ngClass]="evidenziato ? 'testo-evidenziato' : ''" (click)="onEvidenzazione()" style="cursor: pointer;">Benvenuti in Cibando!!</h1>
-  <p [ngStyle]="{'background-color': evidenziato ? 'yellow' : 'white'}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, repudiandae cum? Sit mollitia natus beatae commodi dolores sequi! Commodi, quia.</p>
+  <h1 style="cursor: pointer;">Benvenuti in Cibando!!</h1> <!-- [ngClass]="evidenziato ? 'testo-evidenziato' : ''" (click)="onEvidenzazione()" -->
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <!-- [ngStyle]="{'background-color': evidenziato ? 'yellow' : 'white'}" -->
+    Ipsum, repudiandae cum? Sit mollitia natus beatae commodi dolores sequi!
+    Commodi, quia.
+  </p>
 </div>
 
-<h2>Ultime ricette</h2>
-<p-button [label]="isLoaded() ? 'Nascondi ricette' : 'Mostra ricette'" (click)="toggle()"/>
-@defer (when isLoaded()) {
-  @if (isLoaded()){
-    <div id="container-cards">
-      <div class="container-card" *ngFor="let ricetta of ricette">
-        <app-recipe-card [recipe]="ricetta" [page]="'home'"></app-recipe-card>
+<div class="container-title">
+  <h2>Ultime ricette</h2>
+  <p-button [label]="isLoaded() ? 'Nascondi ricette' : 'Mostra ricette'" (click)="toggle()"/>
+  @defer (when isLoaded()) {
+    @if (isLoaded()){
+      <div id="container-cards">
+        <div class="container-card" *ngFor="let ricetta of ricette">
+          <app-recipe-card [recipe]="ricetta" [page]="'home'"></app-recipe-card>
+        </div>
       </div>
-    </div>
+    }
   }
-}
+</div>
 
 <!--
 <button (click)="openModal(modaleUno, 453, 'Spaghetti')">Elimina Prodotto</button>
 <button (click)="openModal(modaleRegistrazione)">Registrazione</button>
--->
-<!-- MODALE 1 -->
+
 <ng-template #modaleUno let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title">Elimina prodotto</h4>
@@ -35,6 +39,7 @@
     <button type="button" class="btn btn-secondary" (click)="modal.dismiss()" ngbAutofocus>ANNULLA</button>
 	</div>
 </ng-template>
+-->
 
 <!-- MODALE 2 -->
 <ng-template #modaleRegistrazione let-modal>

@@ -29,6 +29,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { SearchBarComponent } from './components/shared/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     CreateRecipeComponent,
     LoginComponent,
     ProfileComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,8 @@ export class RecipeCardComponent {
   @Output() deleteRequest = new EventEmitter();
   @Output() updateRequest = new EventEmitter();
 
+  preferito: boolean = false;
+
   private sanitizer = inject(DomSanitizer);
 
   sendDelete(event) {

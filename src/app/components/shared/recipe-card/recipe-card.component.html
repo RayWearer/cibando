@@ -1,5 +1,9 @@
 <div class="card" style="width: 18rem;">
-  <div class="card-image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}"></div>
+  <div class="card-image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}">
+    <button class="btn btn-primary" (click)="preferito = !preferito">
+      <i [ngClass]="preferito ? 'pi pi-heart-fill' : 'pi pi-heart'"></i>
+    </button>
+  </div>
   <div class="card-body">
     <h5 class="card-title">{{recipe.title}}</h5>
     <!-- <p class="card-text">{{recipe.description | slice: 0:250}}...</p> -->

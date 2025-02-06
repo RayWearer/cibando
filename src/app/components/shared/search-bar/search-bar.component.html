@@ -1,0 +1,7 @@
+<div class="card flex">
+  <p-floatLabel>
+      <input id="search-key" type="text" pInputText [(ngModel)]="searchInput" (keyup.enter)="searchRecipes()"/>
+      <label for="search-key">Cerca</label>
+  </p-floatLabel>
+  <button class="btn btn-primary" (click)="searchRecipes()"><i class="pi pi-search"></i></button>
+</div>

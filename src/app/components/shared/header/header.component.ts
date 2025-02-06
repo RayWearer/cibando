@@ -1,8 +1,9 @@
 import { Component, DoCheck } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { RecipesService } from '../../../services/recipes.service';
 
-interface User{
+interface User {
   _id: string,
   name: string,
   email: string,
@@ -22,7 +23,9 @@ export class HeaderComponent implements DoCheck {
   isCollapsed = true;
   user: User;
 
-  constructor(private router: Router, public authService: AuthService) {
+  ricette = [];
+
+  constructor(private router: Router, private recipeService: RecipesService, public authService: AuthService) {
 
   }
 
@@ -37,4 +40,10 @@ export class HeaderComponent implements DoCheck {
     this.router.navigateByUrl('home');
   }
 
+  /*
+  onSearchRequest(searchInput: string) {
+    this.recipeService.fillSearchKey(searchInput);
+    this.router.navigate(['/ricette']);
+  }
+  */
 }

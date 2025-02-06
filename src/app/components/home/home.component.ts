@@ -44,7 +44,7 @@ export class HomeComponent {
     });
   }
 
-    /* Utilizzare localStorage per immagazzinare i dati dell'utente, accetta solo stringhe quindi usiamo stringify
+  /* Utilizzare localStorage per immagazzinare i dati dell'utente, accetta solo stringhe quindi usiamo stringify
   ngAfterViewInit(): void {
     this.userService.datiUtente.subscribe( response => {
       console.log(response);
@@ -59,9 +59,11 @@ export class HomeComponent {
   }
   */
 
+  /*
   onEvidenzazione() {
     this.evidenziato = !this.evidenziato;
   }
+  */
 
   openModal(content: any, id?: number, nome?: string){
     this.idModale = id;

@@ -17,7 +17,7 @@ body {
 
 .btn-primary {
   background-color: $primary-color-1;
-  border-color: $primary-color-1!important;
+  border-color: $primary-color-1;
   color: white;
 }
 
@@ -28,11 +28,13 @@ body {
 
 .btn-primary:active{
   background-color: $secondary-dark-color-1!important;
+  border-color: $secondary-dark-color-1!important;
 }
 
 .btn-primary:disabled{
   cursor: default;
   pointer-events: none;
+  border: none;
   background-color: #aaa;
 }
 
@@ -43,6 +45,8 @@ body {
   top: -8px;
 }
 
+/*
 input.ng-valid{
   border: 2px solid green!important;
 }
+*/

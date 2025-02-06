@@ -1,0 +1,34 @@
+@import "../../../styles/colori.scss";
+
+.card{
+  width: 240px;
+  background: none;
+  border: none;
+  position: relative;
+  top: 8px;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+#search-key{
+  width: 100%;
+}
+
+input{
+  padding: 2px 2px 0 8px;
+  border: none!important;
+  border-radius: 16px;
+  :active{
+    border: none!important;
+  }
+}
+
+button{
+  border: 1px solid $secondary-light-color-1!important;
+  border-radius: 160px!important;
+}

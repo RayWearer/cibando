@@ -1,7 +1,8 @@
 @import "../../styles/colori.scss";
 
 .container-title{
-  width: 480px;
+  width: 100%;
+  text-align: center;
 
   h1 {
     font-size: 36px;
@@ -26,4 +27,12 @@
   justify-content: center;
   align-content: center;
   gap: 16px;
+}
+
+:host ::ng-deep button.p-ripple.p-element.p-button.p-component {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 8px;
+  background: $primary-color-1;
+  border: none;
 }

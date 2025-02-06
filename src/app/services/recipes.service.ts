@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RECIPES } from '../mocks/recipes.mock';
-import { Observable, of } from 'rxjs'; //of viene utilizzato con i dati mockati per simularli come reali
+import { BehaviorSubject, Observable, of } from 'rxjs'; //of viene utilizzato con i dati mockati per simularli come reali
 import { Recipe } from '../models/recipes.model';
 import { HttpClient } from '@angular/common/http';
 

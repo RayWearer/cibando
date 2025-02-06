@@ -22,20 +22,15 @@ export class CreateRecipeComponent {
   private recipesService = inject(RecipesService);
 
   ricetta: Recipe | undefined;
-  //difficultyLevels = [1, 2, 3, 4, 5];
 
   onSubmit() {
-    this.onPostDetails();
-  }
-
-  onPostDetails() {
     const ricetta: Recipe = {
       _id: '',
       title: this.form.controls.title.value,
       description: this.form.controls.description.value,
       image: this.form.controls.image.value,
-      difficulty: Number(this.form.controls.difficulty.value),
       published: true,
+      difficulty: Number(this.form.controls.difficulty.value),
       updatedAt: new Date().toISOString()
     }
 

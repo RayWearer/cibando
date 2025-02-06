@@ -1,10 +1,12 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Recipe } from '../../../models/recipes.model';
 import { RecipesService } from '../../../services/recipes.service';
-import { Observable, take, filter, map, first } from 'rxjs';
+import { Observable, BehaviorSubject, take, filter, map, first } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { SearchService } from '../../../services/search.service';
 
 /*
 interface PageEvent {
@@ -21,7 +23,7 @@ interface PageEvent {
   templateUrl: './recipes-list.component.html',
   styleUrl: './recipes-list.component.scss'
 })
-export class RecipesListComponent {
+export class RecipesListComponent implements OnInit {
   @ViewChild('modaleElimina', {static: false}) modaleElimina: ElementRef;
   @ViewChild('modaleAggiorna', {static: false}) modaleAggiorna: ElementRef;
 
@@ -36,33 +38,33 @@ export class RecipesListComponent {
   ricette: Recipe[] = [];
   ricetta: Recipe | undefined;
 
+  role: string;
+  searchKey: string = '';
+
   //  titoloRicevuto: any;
 
   first: number = 0;
   rows: number = 10;
+  totalRecords: number = 0;
   page: number = 1;
   size: number = 4;
 
   modalId: string = '';
   modalTitle: string = '';
-  modalDescription: string = '';
-  modalImage: string = '';
-  modalDifficulty: number;
-
-  role: string;
 
   authService = inject(AuthService);
 
   recipeService = inject(RecipesService);
+  searchService = inject(SearchService);
   //  Creiamo una nuova variabile per le ricette, la chiamiamo in inglese per non confonderla con la prima. Questa
   //  verrà identificata PER CONVENZIONE con il simbolo $ alla fine, che sta ad indicare un dato che verrà definito da chiamata async
-  recipes$: Observable<Recipe[]> = this.recipeService.getRecipes().pipe(
+  recipes$: Observable<Recipe[]>; /* = this.recipeService.getRecipes().pipe(
     //  map(response => response.filter(ricetteFiltrate => ricetteFiltrate.difficulty < 3)),
     map(res => this.totaleRicette = res)
-  );
+  );*/
   totaleRicette: Recipe[];
 
-  constructor(private modalService: NgbModal) { //constructor(private recipeService: RecipesService)
+  constructor(private modalService: NgbModal, private route: ActivatedRoute) { //constructor(private recipeService: RecipesService)
     /*
     this.recipeService.getRecipes().pipe(
       first(), // take(1)
@@ -76,9 +78,9 @@ export class RecipesListComponent {
     })
     */
 //  this.getRecipes();
+
     if(JSON.parse(localStorage.getItem('user')) !== null) {
       this.role = JSON.parse(localStorage.getItem('user')).role;
-      console.log(this.role);
     }
   }
 
@@ -88,15 +90,47 @@ export class RecipesListComponent {
   }
   */
 
+  ngOnInit() {
+    this.recipeService.getRecipes().subscribe({
+      next: (recipes) => {
+        this.totaleRicette = recipes;
+        this.searchService.getSearchKey().subscribe(searchKey => {
+          let filteredRecipes;
+          if (!searchKey) {
+            filteredRecipes = this.totaleRicette;
+          } else {
+            filteredRecipes = this.totaleRicette.filter(recipe =>
+              recipe.title.toLowerCase().includes(searchKey.toLowerCase()) ||
+              recipe.description.toLowerCase().includes(searchKey.toLowerCase())
+            );
+          }
+          this.recipes$ = new BehaviorSubject(filteredRecipes);
+
+          this.first = 0; // Reset alla prima pagina
+          this.totalRecords = filteredRecipes.length;
+        });
+      },
+      error: (err) => console.error('Errore nel recupero delle ricette:', err)
+    });
+  }
+
   onPageChange(event) {
     event.page = event.page + 1;
     this.page = event.page;
     this.size = event.rows;
   }
 
-  getRecipes() {
+  getRecipes(filterOption?: string | null) {
     this.recipeService.getRecipes().pipe(
-      first(),
+      map((recipe) => {
+        if(filterOption && filterOption !== '') {
+          return recipe.filter(recipe =>
+            recipe.title.toLowerCase().search(filterOption.toLowerCase())
+          );
+        }
+
+        return recipe;
+      })
     ).subscribe({
       next: (response) => {
         this.ricette = response;
@@ -158,7 +192,6 @@ export class RecipesListComponent {
     this.recipeService.deleteRecipe(id).subscribe({
       next: (response) => {
         console.log('Ricetta eliminata con successo!', response);
-        this.getRecipes();
       },
       error: (err) => {
         console.error('Errore durante l\'eliminazione della ricetta:', err);
